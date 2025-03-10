@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple BlockMirror Example</title>
+
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Blockly -->
+    <script src="%PUBLIC_URL%/lib/blockly/blockly_compressed.js"></script>
+    <script src="%PUBLIC_URL%/lib/blockly/blocks_compressed.js"></script>
+    <script src="%PUBLIC_URL%/lib/blockly/msg/js/en.js"></script>
+    <script src="%PUBLIC_URL%/lib/blockly/python_compressed.js"></script>
+
+    <!-- CodeMirror -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/lib/codemirror/codemirror.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/lib/codemirror/fullscreen.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/lib/codemirror/show-hint.css" />
+    <script src="%PUBLIC_URL%/lib/codemirror/codemirror.js"></script>
+    <script src="%PUBLIC_URL%/lib/codemirror/show-hint.js"></script>
+    <script src="%PUBLIC_URL%/lib/codemirror/python-hint.js"></script>
+    <script src="%PUBLIC_URL%/lib/codemirror/fullscreen.js"></script>
+    <script src="%PUBLIC_URL%/lib/codemirror/python.js"></script>
+
+    <!-- Skulpt -->
+    <script src="%PUBLIC_URL%/dist/skulpt_parser.js"></script>
+
+    <!-- BlockMirror -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/dist/block_mirror.css" />
+    <script src="%PUBLIC_URL%/dist/block_mirror.js"></script>
+
+    <!-- 自訂樣式 -->
+    <style>
+      /* 確保整體容器使用 flex 布局 */
+      .blockmirror-split {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      /* 固定文字在左，區塊在右 */
+      .blockmirror-split .blockmirror-text {
+        order: 1; /* 文字視圖在左 */
+        width: 50% !important; /* 強制設置寬度 */
+        border-right: 1px solid #ccc; /* 添加邊框以分隔 */
+        box-sizing: border-box; /* 確保邊框不影響寬度 */
+        overflow: auto; /* 防止內容溢出 */
+        position: relative !important; /* 避免絕對定位導致疊加 */
+      }
+
+      .blockmirror-split .blockmirror-blocks {
+        order: 2; /* 區塊視圖在右 */
+        width: 50% !important; /* 強制設置寬度 */
+        box-sizing: border-box;
+        overflow: hidden; /* 防止 Blockly 溢出 */
+        position: relative !important; /* 避免絕對定位導致疊加 */
+      }
+
+      /* 隱藏其他模式 */
+      .blockmirror-block,
+      .blockmirror-textonly {
+        display: none !important;
+      }
+      
+      /* 確保編輯器容器正確顯示 */
+      #blockmirror-editor {
+        display: flex;
+        flex-direction: row;
+        height: 480px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* 確保 Blockly 工具欄和編輯區不疊加 */
+      .blocklySvg {
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .blocklyToolboxDiv {
+        width: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
